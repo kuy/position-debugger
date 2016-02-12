@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import d3 from 'd3';
 
+const color = d3.scale.category10();
+
 export default class Preview extends Component {
   static get displayName() {
     return 'Preview';
@@ -30,7 +32,7 @@ export default class Preview extends Component {
         .attr('y', d => d.top)
         .attr('width', d => d.width)
         .attr('height', d => d.height)
-        .attr('fill', 'gray');
+        .attr('fill', (d, i) => color(i));
 
     rect.exit().remove();
   }
