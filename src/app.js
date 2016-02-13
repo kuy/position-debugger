@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from './actions';
+import {
+  Layout, Header, HeaderRow, Button,
+  Navigation, Grid, Cell, Content, Icon
+} from 'react-mdl';
 import List from './list';
 import Preview from './preview';
 
@@ -28,18 +32,39 @@ class App extends Component {
   render() {
     const { app: { positions } } = this.props;
     return (
-      <div>
-        <h1>Debugger for <a href="https://github.com/kuy/redux-tooltip">redux-tooltip</a></h1>
-        <List
-          data={positions}
-          onAdd={this.handleAdd}
-          onRemove={this.handleRemove}
-          onUpdate={this.handleUpdate}
-        />
-        <Preview
-          data={positions}
-        />
-      </div>
+      <Layout style={{ backgroundColor: 'white' }}>
+        <Header title="Position Debugger" style={{ color: 'white' }}>
+          <Navigation>
+            <a href="https://github.com/kuy/position-debugger" target="_blank">GitHub</a>
+          </Navigation>
+        </Header>
+        <Content>
+          <Grid>
+            <Cell col={5}>
+              <Header transparent>
+                <HeaderRow title="Data" style={{ color: 'black', padding: '0 0 0 5px' }}>
+                  <Button ripple raised accent onClick={this.handleAdd}>
+                    Add
+                  </Button>
+                </HeaderRow>
+              </Header>
+              <List
+                data={positions}
+                onRemove={this.handleRemove}
+                onUpdate={this.handleUpdate}
+              />
+            </Cell>
+            <Cell col={7}>
+              <Header transparent>
+                <HeaderRow title="Preview" style={{ color: 'black', padding: '0 0 0 5px' }} />
+              </Header>
+              <Preview
+                data={positions}
+              />
+            </Cell>
+          </Grid>
+        </Content>
+      </Layout>
     );
   }
 }

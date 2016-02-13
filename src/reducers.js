@@ -17,7 +17,7 @@ function parse(text) {
 }
 
 const initial = {
-  positions: []
+  positions: ['']
 };
 
 function app(state = initial, action) {
